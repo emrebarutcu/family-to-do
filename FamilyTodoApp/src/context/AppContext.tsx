@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
 import { familyService, taskService, rewardService } from '../services/firebase';
-import { Family, User, Task, Reward, AppContextType } from '../types';
+import { Family, User, Task, Reward, AppContextType, AddChildFormData } from '../types';
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -71,7 +71,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   };
 
-  const addChildToFamily = async (childData: Partial<User>): Promise<void> => {
+  const addChildToFamily = async (childData: AddChildFormData): Promise<void> => {
     if (!family) throw new Error('No family found');
     
     try {

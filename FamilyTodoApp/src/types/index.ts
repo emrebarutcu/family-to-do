@@ -58,7 +58,7 @@ export interface AppContextType {
   rewards: Reward[];
   isLoading: boolean;
   createFamily: (familyName: string) => Promise<void>;
-  addChildToFamily: (childData: Partial<User>) => Promise<void>;
+  addChildToFamily: (childData: AddChildFormData) => Promise<void>;
   createTask: (taskData: Partial<Task>) => Promise<void>;
   updateTaskStatus: (taskId: string, status: Task['status'], rejectedReason?: string) => Promise<void>;
   markTaskCompleted: (taskId: string) => Promise<void>;
@@ -90,7 +90,8 @@ export interface CreateTaskFormData {
 export interface AddChildFormData {
   name: string;
   surname: string;
-  email?: string;
+  email: string;
+  password: string;
 }
 
 export interface CreateFamilyFormData {

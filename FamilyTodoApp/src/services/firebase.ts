@@ -173,22 +173,30 @@ export const familyService = {
     }
   },
 
-  async addChildToFamily(familyId: string, childData: Partial<User>): Promise<void> {
+  async addChildToFamily(familyId: string, childData: { name: string; surname: string; email: string; password: string }): Promise<void> {
     try {
-      // Generate a unique child ID
-      const childRef = doc(collection(db, 'families', familyId, 'members'));
+      // Create Firebase Auth user for the child
+      const userCredential = await createUserWithEmailAndPassword(auth, childData.email, childData.password);
+      const firebaseUser = userCredential.user;
       
+      // Create user document in the main users collection
       const childUserData: Omit<User, 'id'> = {
-        name: childData.name || '',
-        surname: childData.surname || '',
-        email: childData.email || '',
+        name: childData.name,
+        surname: childData.surname,
+        email: childData.email,
         role: 'child',
         family_id: familyId,
         points: 0,
         joined_at: new Date()
       };
       
-      await setDoc(childRef, childUserData);
+      await setDoc(doc(db, 'users', firebaseUser.uid), childUserData);
+      
+      // Also add the child to the family members subcollection for easier querying
+      await setDoc(doc(db, 'families', familyId, 'members', firebaseUser.uid), {
+        ...childUserData,
+        id: firebaseUser.uid
+      });
     } catch (error) {
       throw new Error(`Failed to add child to family: ${error}`);
     }
