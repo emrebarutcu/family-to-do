@@ -5,7 +5,7 @@ import { useAuth } from './AuthContext';
 
 const FamilyContext = createContext<FamilyContextType | undefined>(undefined);
 
-export const useFamily = () => {
+export const useFamily = (): FamilyContextType => {
   const context = useContext(FamilyContext);
   if (!context) {
     throw new Error('useFamily must be used within a FamilyProvider');

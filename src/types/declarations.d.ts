@@ -1029,26 +1029,4 @@ declare module '@react-navigation/bottom-tabs' {
   };
 }
 
-// Global hook declarations
-declare global {
-  function useAuth(): {
-    user: any;
-    isLoading: boolean;
-    signIn: (email: string, password: string) => Promise<void>;
-    signUp: (email: string, password: string, name: string, surname: string) => Promise<void>;
-    signOut: () => Promise<void>;
-    createFamily: (familyName: string) => Promise<void>;
-  };
-  
-  function useFamily(): {
-    family: any;
-    members: any[];
-    tasks: any[];
-    rewards: any[];
-    isLoading: boolean;
-    refreshData: () => Promise<void>;
-    createTask: (taskData: any) => Promise<void>;
-    updateTaskStatus: (taskId: string, status: string) => Promise<void>;
-    createReward: (rewardData: any) => Promise<void>;
-  };
-}
+// Context hooks are properly typed in their respective context files
