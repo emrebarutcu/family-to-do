@@ -6,12 +6,13 @@ import { getMessaging } from 'firebase/messaging';
 // Firebase configuration
 // TODO: Replace with your actual Firebase configuration
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id"
+  apiKey: "AIzaSyCXLjATJIJxu_18iXFyD1NenGCet-vpAx4",
+  authDomain: "todo2-832e4.firebaseapp.com",
+  projectId: "todo2-832e4",
+  storageBucket: "todo2-832e4.firebasestorage.app",
+  messagingSenderId: "713198507446",
+  appId: "1:713198507446:web:48d6d31cbda8e861afdd17",
+  measurementId: "G-9YDBDXNEE1"
 };
 
 // Initialize Firebase
